@@ -2,8 +2,16 @@ class Flowpipe < Formula
   desc "Cloud scripting engine"
   homepage "https://flowpipe.io"
   url "https://github.com/turbot/flowpipe/archive/refs/tags/v0.4.2.tar.gz"
-  sha256 "55fdfa27f99b8430d0d0b119842df2eb85b409ec7e44119f08a084d527adeba3"
+  sha256 "55fdfa27f99b8430d0d0b119842df2eb85b409ec7e44119f08a084d527adeba3"s
   license "AGPL-3.0-only"
+
+  # Upstream creates releases that use a stable tag (e.g., `v1.2.3`) but are
+  # labeled as "pre-release" on GitHub before the version is released, so it's
+  # necessary to use the `GithubLatest` strategy.
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_sonoma:   "028c494f378c3d59c7230117776b9455212399b11a9a319699efa38b2b487150"

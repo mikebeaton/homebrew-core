@@ -1,9 +1,23 @@
 class Lnav < Formula
   desc "Curses-based tool for viewing and analyzing log files"
   homepage "https://lnav.org/"
-  url "https://github.com/tstack/lnav/releases/download/v0.12.1/lnav-0.12.1.tar.gz"
-  sha256 "d4565fbe29ad00e1e00efc6bff68e2068e102ace95ff296610d2bd6c04b13d67"
   license "BSD-2-Clause"
+
+  # Remove stable block when patches are no longer needed
+  stable do
+    url "https://github.com/tstack/lnav/releases/download/v0.12.1/lnav-0.12.1.tar.gz"
+    sha256 "d4565fbe29ad00e1e00efc6bff68e2068e102ace95ff296610d2bd6c04b13d67"
+
+    # Fixes for https://github.com/tstack/lnav/issues/1245
+    patch do
+      url "https://github.com/tstack/lnav/commit/a2b573aa58effb3f42f4601723866e2e1e9dd703.patch?full_index=1"
+      sha256 "5f02d81446bbd29f8acbdea7bab1846a64b41109fb1af7dbd58cb4d5e0a733e2"
+    end
+    patch do
+      url "https://github.com/tstack/lnav/commit/3a63791b22080b69d85f5c138e25a16b1d2d141d.patch?full_index=1"
+      sha256 "d5251cce4ff43862000ba238ee5b1ad9b17cd6f0511d1ac4dba0929ca07373f5"
+    end
+  end
 
   livecheck do
     url :stable
